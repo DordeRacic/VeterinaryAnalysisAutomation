@@ -3,7 +3,6 @@ import json
 from pathlib import Path
 import re
 import requests
-from email_validator import validate_email, EmailNotValidError
 
 # === CONFIGURATION ===
 SERVICE_TOKEN = st.secrets['api']['service_token']
@@ -105,11 +104,9 @@ if submit_button:
         st.warning("Please enter your full name (first and last).")
         all_valid = False
 
-    try:
-        validate_email(email)
-    except EmailNotValidError:
-        st.warning("Please enter a valid email address.")
-        all_valid = False
+    if not re.fullmatch(r"[^@\\s]+@[^@\\s]+\\.[^@\\s]+", email):
+            st.warning("Please enter a valid email address.")
+            all_valid = False
 
     if not re.fullmatch(r"\d{10}", cell_no):
         st.warning("Please enter a valid phone number (10 digits only).")
