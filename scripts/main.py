@@ -76,7 +76,7 @@ with col1:
         with state_col:
             state = st.text_input("State (2-letter):")
         with zip_col:
-            zip_code = st.text_input("Zip Code (optional):")
+            zip_code = st.text_input("Zip Code:")
 
 
 with col2:
@@ -104,9 +104,9 @@ if submit_button:
         st.warning("Please enter your full name (first and last).")
         all_valid = False
 
-    if not re.fullmatch(r"[^@\\s]+@[^@\\s]+\\.[^@\\s]+", email):
+    '''if not re.fullmatch(r"[^@\\s]+@[^@\\s]+\\.[^@\\s]+", email):
             st.warning("Please enter a valid email address.")
-            all_valid = False
+            all_valid = False '''
 
     if not re.fullmatch(r"\d{10}", cell_no):
         st.warning("Please enter a valid phone number (10 digits only).")
@@ -118,6 +118,8 @@ if submit_button:
 
     if not agree:
         st.warning("Please check the confirmation box.")
+        all_valid = False
+    if not zip_code:
         all_valid = False
 
     if all_valid:
@@ -170,3 +172,7 @@ if submit_button:
             with open(data_path, 'w') as f:
                 json.dump(local_data, f, indent=2)
             st.success("Data saved locally.")
+
+
+        #TODO: Create new fields for secondary contact information (optional), alternative phone number (optional), make total age or DOB (if known) choice
+        #TODO: Add Doctor field (optional) and Clinic Name (mandatory)
