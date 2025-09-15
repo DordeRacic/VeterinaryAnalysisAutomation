@@ -6,8 +6,11 @@ import requests
 import random
 import string
 import email
-import fitz
+from reportlab.pdfgen import canvas
+from reportlab.lib.pagesizes import letter
+from PyPDF2 import PdfReader, PdfWriter
 import io
+from pathlib import Path
 
 # === CONFIGURATION ===
 SERVICE_TOKEN = st.secrets['api']['service_token_test']
@@ -151,41 +154,55 @@ with col2:
 agree = st.checkbox("I confirm the information is correct.")
 submit_button = st.button("Submit")
 
-def fill_pdf_with_fitz(payload, extra_fields):
-    pdf_template_path = Path(__file__).resolve().parent / "Client Information Sheet - CR, QC 2025.pdf"
-    doc = fitz.open(pdf_template_path)
-    page = doc[0]
+def fill_pdf_with_reportlab(payload, extra_fields):
+    # === Step 1: Create a temporary overlay with reportlab ===
+    overlay_buffer = io.BytesIO()
+    c = canvas.Canvas(overlay_buffer, pagesize=letter)
+    c.setFont("Helvetica", 10)
 
-    # === CLIENT INFORMATION FIELDS ===
-    page.insert_text((100, 690), f"{payload['patient_owner_firstname']} {payload['patient_owner_lastname']}", fontsize=10)
-    page.insert_text((100, 665), payload['patient_address'], fontsize=10)
-    page.insert_text((100, 640), f"{payload['city']}, {payload['state']} {payload['zip']}", fontsize=10)
-    page.insert_text((100, 615), payload['phone'], fontsize=10)
-    page.insert_text((100, 590), payload['email'], fontsize=10)
-    page.insert_text((100, 570), extra_fields.get("work_no", ""), fontsize=10)
-    page.insert_text((100, 550), extra_fields.get("alt_no", ""), fontsize=10)
-    page.insert_text((100, 530), extra_fields.get("employer", ""), fontsize=10)
-    page.insert_text((100, 510), extra_fields.get("drive_lic", ""), fontsize=10)
-    page.insert_text((100, 490), f"{extra_fields.get('owner_month')}/{extra_fields.get('owner_day')}/{extra_fields.get('owner_year')}", fontsize=10)
-    page.insert_text((100, 470), f"Been here before? {extra_fields.get('prev_visit')}", fontsize=10)
+    # Client Info
+    c.drawString(100, 690, f"{payload['patient_owner_firstname']} {payload['patient_owner_lastname']}")
+    c.drawString(100, 665, payload.get('patient_address', ''))
+    c.drawString(100, 640, f"{payload.get('city', '')}, {payload.get('state', '')} {payload.get('zip', '')}")
+    c.drawString(100, 615, payload.get('phone', ''))
+    c.drawString(100, 590, payload.get('email', ''))
+    c.drawString(100, 570, extra_fields.get("work_no", ""))
+    c.drawString(100, 550, extra_fields.get("alt_no", ""))
+    c.drawString(100, 530, extra_fields.get("employer", ""))
+    c.drawString(100, 510, extra_fields.get("drive_lic", ""))
+    c.drawString(100, 490, f"{extra_fields.get('owner_month')}/{extra_fields.get('owner_day')}/{extra_fields.get('owner_year')}")
+    c.drawString(100, 470, f"Been here before? {extra_fields.get('prev_visit')}")
 
-    # === PET INFORMATION ===
-    page.insert_text((100, 440), payload['patient_name'], fontsize=10)
-    page.insert_text((240, 440), payload['patient_species'], fontsize=10)
-    page.insert_text((100, 420), payload['patient_breed'], fontsize=10)
-    page.insert_text((100, 400), f"{payload['birthday_month']}/{payload['birthday_day']}/{payload['birthday_year']}", fontsize=10)
-    page.insert_text((100, 380), extra_fields.get("color", ""), fontsize=10)
-    page.insert_text((100, 360), f"Seen before? {extra_fields.get('pet_prev_visit')}", fontsize=10)
+    # Pet Info
+    c.drawString(100, 440, payload['patient_name'])
+    c.drawString(240, 440, payload['patient_species'])
+    c.drawString(100, 420, payload['patient_breed'])
+    c.drawString(100, 400, f"{payload['birthday_month']}/{payload['birthday_day']}/{payload['birthday_year']}")
+    c.drawString(100, 380, extra_fields.get("color", ""))
+    c.drawString(100, 360, f"Seen before? {extra_fields.get('pet_prev_visit')}")
+    c.drawString(100, 330, extra_fields.get("doctor", ""))
+    c.drawString(250, 330, extra_fields.get("clinic_name", ""))
 
-    # === VETERINARIAN INFO ===
-    page.insert_text((100, 330), extra_fields.get("doctor", ""), fontsize=10)
-    page.insert_text((250, 330), extra_fields.get("clinic_name", ""), fontsize=10)
+    c.save()
+    overlay_buffer.seek(0)
 
-    # Return in-memory buffer
-    output = io.BytesIO()
-    doc.save(output)
-    output.seek(0)
-    return output
+    # === Step 2: Merge overlay with original PDF ===
+    output_buffer = io.BytesIO()
+
+    # Load original form
+    pdf_path = Path(__file__).resolve().parent / "Client Information Sheet - CR, QC 2025.pdf"
+    template_pdf = PdfReader(str(pdf_path))
+    overlay_pdf = PdfReader(overlay_buffer)
+    writer = PdfWriter()
+
+    base_page = template_pdf.pages[0]
+    base_page.merge_page(overlay_pdf.pages[0])
+    writer.add_page(base_page)
+
+    writer.write(output_buffer)
+    output_buffer.seek(0)
+
+    return output_buffer
 
 
 if submit_button:
@@ -268,7 +285,7 @@ if submit_button:
                     "clinic_name": clinic_name
                 }
 
-                pdf_filled = fill_pdf_with_fitz(payload, extra_fields)
+                pdf_filled = fill_pdf_with_reportlab(payload, extra_fields)
 
                 st.download_button(
                     label="Download Completed PDF",

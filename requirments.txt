@@ -1,5 +1,7 @@
 streamlit
 requests
 captcha
-PyMuPDF
+reportlab
+PyPDF2
+
 
