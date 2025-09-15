@@ -4,10 +4,8 @@ from pathlib import Path
 import re
 import requests
 from captcha.image import ImageCaptcha
-from captcha.image import ImageCaptcha
 import random
 import string
-from PIL import Image
 import io
 
 # === CONFIGURATION ===
@@ -62,24 +60,23 @@ if "captcha_text" not in st.session_state:
     st.session_state.captcha_text =  ''.join(random.choices(string.ascii_uppercase + string.digits, k=5))
 
 # Generate the CAPTCHA image
-image = ImageCaptcha()
-captcha_image = image.generate_image(st.session_state.captcha_text)
+if "captcha_answer" not in st.session_state:
+    a, b = random.randint(1, 9), random.randint(1, 9)
+    st.session_state.captcha_question = f"{a} + {b}"
+    st.session_state.captcha_answer = str(a + b)
 
-# Display image
-buf = io.BytesIO()
-captcha_image.save(buf, format='PNG')
-st.image(buf.getvalue(), caption="Enter the text above")
+st.write("Please solve this to prove you're human:")
+st.write(f"**{st.session_state.captcha_question} = ?**")
+captcha_input = st.text_input("Answer:")
 
-# Input field
-user_input = st.text_input("Enter CAPTCHA text")
-
-# Validation
-if st.button("Verify CAPTCHA"):
-    if user_input.strip().upper() == st.session_state.captcha_text:
-        st.success("CAPTCHA verified!")
-        del st.session_state["captcha_text"]
+if st.button("Submit"):
+    if captcha_input.strip() == st.session_state.captcha_answer:
+        st.success("CAPTCHA passed!")
+        del st.session_state["captcha_answer"]
+        del st.session_state["captcha_question"]
     else:
-        st.error("Incorrect CAPTCHA")
+        st.error("Incorrect answer. Please try again.")
+        st.stop()
 
 # === UI FORM ===
 st.markdown("""
