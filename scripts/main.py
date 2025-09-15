@@ -168,27 +168,30 @@ def fill_pdf_with_fitz(payload, extra_fields):
             page.insert_text((x, y), str(text), fontsize=font_size, fontname=font)
 
     # === CLIENT INFO ===
-    draw(100, 690, f"{payload['patient_owner_firstname']} {payload['patient_owner_lastname']}")
-    draw(100, 665, payload.get('patient_address', ''))
-    draw(100, 640, f"{payload.get('city', '')}, {payload.get('state', '')} {payload.get('zip', '')}")
-    draw(100, 615, payload.get('phone', ''))
-    draw(100, 590, payload.get('email', ''))
-    draw(100, 570, extra_fields.get("work_no", ""))
-    draw(100, 550, extra_fields.get("alt_no", ""))
-    draw(100, 530, extra_fields.get("employer", ""))
+    draw(207, 173, f"{payload['patient_owner_firstname']}")
+    draw(391, 173, payload.get('patient_owner_lastname', ''))
+    draw(91, 217, payload.get('patient_address', ''))
+    draw(330, 217, f"{payload.get('city', '')}")
+    draw(448, 217, payload.get('state', ''))
+    draw(511, 217, payload.get('zip', ''))
+    draw(121, 236, payload.get('phone', ''))
+    draw(116, 298, payload.get('email', ''))
+    draw(386, 233, extra_fields.get("work_no", ""))
+    draw(137, 254, extra_fields.get("alt_no", ""))
+    draw(442, 254, extra_fields.get("employer", ""))
     draw(100, 510, extra_fields.get("drive_lic", ""))
-    draw(100, 490, f"{extra_fields.get('owner_month')}/{extra_fields.get('owner_day')}/{extra_fields.get('owner_year')}")
-    draw(100, 470, f"Been here before? {extra_fields.get('prev_visit')}")
+    draw(208, 271, f"{extra_fields.get('owner_month')}/{extra_fields.get('owner_day')}/{extra_fields.get('owner_year')}")
+    draw(230, 317, f"Been here before? {extra_fields.get('prev_visit')}")
 
     # === PET INFO ===
-    draw(100, 440, payload['patient_name'])
-    draw(240, 440, payload['patient_species'])  # Consider converting ID to label if needed
-    draw(100, 420, payload['patient_breed'])    # Same here
-    draw(100, 400, f"{payload['birthday_month']}/{payload['birthday_day']}/{payload['birthday_year']}")
-    draw(100, 380, extra_fields.get("color", ""))
-    draw(100, 360, f"Seen before? {extra_fields.get('pet_prev_visit')}")
-    draw(100, 330, extra_fields.get("doctor", ""))
-    draw(250, 330, extra_fields.get("clinic_name", ""))
+    draw(85, 358, payload['patient_name'])
+    draw(483, 359, payload['patient_species'])  # Consider converting ID to label if needed
+    draw(80, 379, payload['patient_breed'])    # Same here
+    draw(483, 301, f"{payload['birthday_month']}/{payload['birthday_day']}/{payload['birthday_year']}")
+    draw(283, 378, extra_fields.get("color", ""))
+    draw(320, 422, f"Seen before? {extra_fields.get('pet_prev_visit')}")
+    draw(88, 458, extra_fields.get("doctor", ""))
+    draw(308, 458, extra_fields.get("clinic_name", ""))
 
     # Save to in-memory PDF buffer
     output = io.BytesIO()
