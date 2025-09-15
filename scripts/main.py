@@ -201,7 +201,9 @@ def fill_pdf_with_fitz(payload, extra_fields):
         "Spayed female": [(84, 400), (299, 399)]
     }
 
-    coords = sex_coords.get(payload["patient_sex"])
+    sex_label = next(k for k, v in sex_map.items() if v == payload["patient_sex"])
+
+    coords = sex_coords.get(sex_label)
     if coords:
         for coord in coords:
             draw(*coord, 'X')
