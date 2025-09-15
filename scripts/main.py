@@ -1,3 +1,5 @@
+from email.contentmanager import maintype
+
 import streamlit as st
 import json
 import re
@@ -6,6 +8,9 @@ import random
 import io
 from pathlib import Path
 import fitz
+import smtplib
+from email.message import EmailMessage
+
 
 # === CONFIGURATION ===
 SERVICE_TOKEN = st.secrets['api']['service_token_test']
@@ -36,6 +41,27 @@ if data_path.exists():
 else:
     local_data = []
 
+#=== SEND EMAIL AUTOMATICALLY ===
+    def send_email_with_pdf(pdf_bytes, filename,patient_name):
+        email_config = st.secrets['email']
+
+        msg = EmailMessage()
+        msg['Subject']= f"New Patient Intake: {patient_name}"
+        msg['From'] = email_config['sender_email']
+        msg['To'] = email_config['recipient_email']
+        msg.set_content("Attached is the completed patient intake form.")
+
+        msg.add_attachment(pdf_bytes,maintype='application', subtype='pdf', filename= filename)
+
+        try:
+            with smtplib.SMTP(email_config["smtp_server"], email_config["smtp_port"]) as server:
+                server.starttls()
+                server.login(email_config["sender_email"], email_config["sender_password"])
+                server.send_message(msg)
+            return True
+        except Exception as e:
+            st.error(f"Email failed to send: {e}")
+            return False
 # === CAPTCHA ===
 if "captcha_passed" not in st.session_state:
     st.session_state.captcha_passed = False
@@ -304,6 +330,11 @@ if submit_button:
                 }
 
                 pdf_filled = fill_pdf_with_fitz(payload, extra_fields)
+                send_email_with_pdf(
+                    pdf_bytes=pdf_filled.getvalue(),
+                    filename=f"{payload['patient_name']}_intake_form.pdf",
+                    patient_name=payload["patient_name"]
+                )
 
                 st.download_button(
                     label="Download Completed PDF",
@@ -324,6 +355,9 @@ if submit_button:
             with open(data_path, 'w') as f:
                 json.dump(local_data, f, indent=2)
             st.success("Data saved locally.")
+
+
+
 
 
         #TODO: Create new fields for secondary contact information (optional), alternative phone number (optional), make total age or DOB (if known) choice
