@@ -2,3 +2,4 @@ streamlit
 requests
 captcha
 PyMuPDF
+fitz

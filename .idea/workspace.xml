@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="6abb418a-f3bd-4f8f-b379-0b90da429441" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/.streamlit/secrets.toml" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/.streamlit/secrets.toml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
