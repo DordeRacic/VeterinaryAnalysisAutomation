@@ -10,7 +10,7 @@ import io
 from pathlib import Path
 
 # === CONFIGURATION ===
-SERVICE_TOKEN = st.secrets['api']['service_token_test']
+SERVICE_TOKEN = st.secrets['api']['service_token']
 CATALOGUE_URL = "http://test.pro4eyes.com/api/external_catalogues.php"
 PATIENT_ADD_URL = "http://test.pro4eyes.com/api/external_patient_add.php"
 
