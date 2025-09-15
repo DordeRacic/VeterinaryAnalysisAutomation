@@ -1,11 +1,9 @@
 import streamlit as st
 import json
-from pathlib import Path
 import re
 import requests
 import random
-import string
-import email
+
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import letter
 from PyPDF2 import PdfReader, PdfWriter
@@ -207,6 +205,7 @@ def fill_pdf_with_reportlab(payload, extra_fields):
 
 if submit_button:
     all_valid = True
+    st.write("Form submitted")
 
     if not re.fullmatch(r"[A-Za-z'-]+ [A-Za-z'-]+([A-Za-z'-]+)*", owner_name):
         st.warning("Please enter your full name (first and last).")
