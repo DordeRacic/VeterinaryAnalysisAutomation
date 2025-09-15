@@ -8,6 +8,7 @@ import requests
 SERVICE_TOKEN = st.secrets['api']['service_token']
 CATALOGUE_URL = "http://pro4eyes.com/api/external_catalogues.php"
 PATIENT_ADD_URL = "http://pro4eyes.com/api/external_patient_add.php"
+AUTH_TOKEN = st.secrets['auth']['token']
 
 # === CACHING REFERENCE DATA (Species, Breeds, Sex IDs) ===
 @st.cache_data(ttl=3600)
@@ -33,6 +34,16 @@ if data_path.exists():
 else:
     local_data = []
 
+# === USER TOKEN AUTH ===
+if "authenticated" not in st.session_state:
+    st.session_state.authenticated = False
+
+if not st.session_state.authenticated:
+    token_input = st.text_input("Enter Access Token", type="password")
+    if token_input == AUTH_TOKEN:
+        st.session_state.authenticated = True
+    else:
+        st.stop()
 # === UI FORM ===
 st.markdown("""
 <style>
