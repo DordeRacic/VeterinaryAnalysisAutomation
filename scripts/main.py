@@ -5,11 +5,14 @@ import re
 import requests
 import random
 import string
+import email
+import fitz
+import io
 
 # === CONFIGURATION ===
 SERVICE_TOKEN = st.secrets['api']['service_token']
-CATALOGUE_URL = "http://pro4eyes.com/api/external_catalogues.php"
-PATIENT_ADD_URL = "http://pro4eyes.com/api/external_patient_add.php"
+CATALOGUE_URL = "http://test.pro4eyes.com/api/external_catalogues.php"
+PATIENT_ADD_URL = "http://test.pro4eyes.com/api/external_patient_add.php"
 AUTH_TOKEN = st.secrets['auth']['token']
 
 # === CACHING REFERENCE DATA (Species, Breeds, Sex IDs) ===
@@ -83,20 +86,24 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-
-
-
 st.header("Patient Intake Form")
 
 col1, col2 = st.columns(2)
 
+#=== CLIENT AREA ===
 with col1:
     with st.container(border=True):
-        st.subheader("Owner Information")
+        st.subheader("Client Information")
         owner_name = st.text_input("Full Name (First and Last):")
+        sec_owner_name = st.text_input("Full Name of Secondary Contact:")
         email = st.text_input("Email address:")
         cell_no = st.text_input("Phone number (10 digits):")
+        work_no = st.text_input("Work phone:")
+        alt_no = st.text_input("Alternative phone:")
+        employer= st.text_input("Employer:")
+        drive_lic = st.text_input("Driver's Licensce (IF writing check):")
         owner_address = st.text_input("Address:")
+
 
         city_col, state_col , zip_col = st.columns(3)
         with city_col:
@@ -106,14 +113,27 @@ with col1:
         with zip_col:
             zip_code = st.text_input("Zip Code:")
 
+        dob_col1, dob_col2, dob_col3 = st.columns(3)
+        with dob_col1:
+            owner_day = st.selectbox("Day", list(range(1, 32)))
+        with dob_col2:
+            owner_month = st.selectbox("Month", list(range(1, 13)))
+        with dob_col3:
+            owner_year = st.selectbox("Year", list(range(1920, 2010)))
+
+        prev_visit = st.selectbox("Have you been to our facility before?", ["Yes", "No"])
+
 # === ADD CANINE INDEX FOR SPECIES ===
 species_keys = sorted(species_map.keys())
 canine_index = species_keys.index("Canine")
+
+# === PATIENT AREA ===
 with col2:
     with st.container(border=True):
-        st.subheader("Patient Information")
+        st.subheader("Pet Information")
         pet_name = st.text_input("Pet Name:")
-        breed = st.selectbox("Breed", sorted(breed_map.keys()))   #TODO: Make Canine as pre-filled field
+        breed = st.selectbox("Breed", sorted(breed_map.keys()))
+        color = st.text_input("Color")
         dob_col1, dob_col2, dob_col3 = st.columns(3)
         with dob_col1:
             day = st.selectbox("Day", list(range(1, 32)))
@@ -123,9 +143,51 @@ with col2:
             year = st.selectbox("Year", list(range(2000, 2025)))
         patient_sex = st.selectbox("Sex", sorted(sex_map.keys()))
         patient_species = st.selectbox("Species", species_keys, index= canine_index)
+        pet_prev_visit = st.selectbox("Has this pet been at our facility before?", ['Yes','No'])
+
+# === PRIMARY CARE VETERINARIAN INFO
+        doctor = st.text_input("Doctor")
+        clinic_name = st.text_input("Clinic Name")
 
 agree = st.checkbox("I confirm the information is correct.")
 submit_button = st.button("Submit")
+
+def fill_pdf_with_fitz(payload, extra_fields):
+    pdf_template_path = Path(__file__).resolve().parent / "Client Information Sheet - CR, QC 2025.pdf"
+    doc = fitz.open(pdf_template_path)
+    page = doc[0]
+
+    # === CLIENT INFORMATION FIELDS ===
+    page.insert_text((100, 690), f"{payload['patient_owner_firstname']} {payload['patient_owner_lastname']}", fontsize=10)
+    page.insert_text((100, 665), payload['patient_address'], fontsize=10)
+    page.insert_text((100, 640), f"{payload['city']}, {payload['state']} {payload['zip']}", fontsize=10)
+    page.insert_text((100, 615), payload['phone'], fontsize=10)
+    page.insert_text((100, 590), payload['email'], fontsize=10)
+    page.insert_text((100, 570), extra_fields.get("work_no", ""), fontsize=10)
+    page.insert_text((100, 550), extra_fields.get("alt_no", ""), fontsize=10)
+    page.insert_text((100, 530), extra_fields.get("employer", ""), fontsize=10)
+    page.insert_text((100, 510), extra_fields.get("drive_lic", ""), fontsize=10)
+    page.insert_text((100, 490), f"{extra_fields.get('owner_month')}/{extra_fields.get('owner_day')}/{extra_fields.get('owner_year')}", fontsize=10)
+    page.insert_text((100, 470), f"Been here before? {extra_fields.get('prev_visit')}", fontsize=10)
+
+    # === PET INFORMATION ===
+    page.insert_text((100, 440), payload['patient_name'], fontsize=10)
+    page.insert_text((240, 440), payload['patient_species'], fontsize=10)
+    page.insert_text((100, 420), payload['patient_breed'], fontsize=10)
+    page.insert_text((100, 400), f"{payload['birthday_month']}/{payload['birthday_day']}/{payload['birthday_year']}", fontsize=10)
+    page.insert_text((100, 380), extra_fields.get("color", ""), fontsize=10)
+    page.insert_text((100, 360), f"Seen before? {extra_fields.get('pet_prev_visit')}", fontsize=10)
+
+    # === VETERINARIAN INFO ===
+    page.insert_text((100, 330), extra_fields.get("doctor", ""), fontsize=10)
+    page.insert_text((250, 330), extra_fields.get("clinic_name", ""), fontsize=10)
+
+    # Return in-memory buffer
+    output = io.BytesIO()
+    doc.save(output)
+    output.seek(0)
+    return output
+
 
 if submit_button:
     all_valid = True
@@ -190,6 +252,32 @@ if submit_button:
             result = response.json()
 
             if response.status_code == 200 and result.get("result") == "success":
+                # Collect extra fields from form for the PDF
+                extra_fields = {
+                    "sec_owner_name": sec_owner_name,
+                    "work_no": work_no,
+                    "alt_no": alt_no,
+                    "employer": employer,
+                    "drive_lic": drive_lic,
+                    "owner_day": owner_day,
+                    "owner_month": owner_month,
+                    "owner_year": owner_year,
+                    "prev_visit": prev_visit,
+                    "color": color,
+                    "pet_prev_visit": pet_prev_visit,
+                    "doctor": doctor,
+                    "clinic_name": clinic_name
+                }
+
+                pdf_filled = fill_pdf_with_fitz(payload, extra_fields)
+
+                st.download_button(
+                    label="Download Completed PDF",
+                    data=pdf_filled.getvalue(),
+                    file_name=f"{payload['patient_name']}_intake_form.pdf",
+                    mime="application/pdf"
+                )
+
                 st.success(f"Patient uploaded successfully! ID: {result['patient_id']}")
                 st.balloons()
             else:
