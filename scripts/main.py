@@ -195,10 +195,10 @@ def fill_pdf_with_fitz(payload, extra_fields):
     draw(88, 458, extra_fields.get("doctor", ""))
     draw(308, 458, extra_fields.get("clinic_name", ""))
     sex_coords = {
-        "Male": [(138, 400), (335, 399)],  # (gender box, castration blank)
-        "Female": [(84, 400), (335, 399)],
-        "Castrated male": [(138, 400), (299, 399)],  # (gender box, castrated box)
-        "Spayed female": [(84, 400), (299, 399)]
+        "Male": [(136, 403), (335, 403)],  # (gender box, castration blank)
+        "Female": [(82, 403), (335, 403)],
+        "Castrated male": [(136, 403), (299, 403)],  # (gender box, castrated box)
+        "Spayed female": [(82, 403), (299, 403)]
     }
 
     sex_label = next(k for k, v in sex_map.items() if v == payload["patient_sex"])
