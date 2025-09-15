@@ -3,10 +3,8 @@ import json
 from pathlib import Path
 import re
 import requests
-from captcha.image import ImageCaptcha
 import random
 import string
-import io
 
 # === CONFIGURATION ===
 SERVICE_TOKEN = st.secrets['api']['service_token']
