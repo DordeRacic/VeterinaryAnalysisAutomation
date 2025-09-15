@@ -187,7 +187,7 @@ def fill_pdf_with_reportlab(payload, extra_fields):
     output_buffer = io.BytesIO()
 
     # Load original form
-    pdf_path = Path(__file__).resolve().parent / "Client Information Sheet - CR, QC 2025.pdf"
+    pdf_path = Path(__file__).resolve().parent / 'files' / "Client Information Sheet - CR, QC 2025.pdf"
     template_pdf = PdfReader(str(pdf_path))
     overlay_pdf = PdfReader(overlay_buffer)
     writer = PdfWriter()
