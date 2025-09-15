@@ -10,10 +10,9 @@ import fitz
 import io
 
 # === CONFIGURATION ===
-SERVICE_TOKEN = st.secrets['api']['service_token']
+SERVICE_TOKEN = st.secrets['api']['service_token_test']
 CATALOGUE_URL = "http://test.pro4eyes.com/api/external_catalogues.php"
 PATIENT_ADD_URL = "http://test.pro4eyes.com/api/external_patient_add.php"
-AUTH_TOKEN = st.secrets['auth']['token']
 
 # === CACHING REFERENCE DATA (Species, Breeds, Sex IDs) ===
 @st.cache_data(ttl=3600)
