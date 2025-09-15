@@ -138,11 +138,11 @@ with col2:
         color = st.text_input("Color")
         dob_col1, dob_col2, dob_col3 = st.columns(3)
         with dob_col1:
-            day = st.selectbox("Day", list(range(1, 32)))
+            day = st.selectbox("Day", list(range(1, 32)), key='pet_day')
         with dob_col2:
-            month = st.selectbox("Month", list(range(1,13)))
+            month = st.selectbox("Month", list(range(1,13)),key='pet_month')
         with dob_col3:
-            year = st.selectbox("Year", list(range(2000, 2025)))
+            year = st.selectbox("Year", list(range(2000, 2025)), key='pet_year')
         patient_sex = st.selectbox("Sex", sorted(sex_map.keys()))
         patient_species = st.selectbox("Species", species_keys, index= canine_index)
         pet_prev_visit = st.selectbox("Has this pet been at our facility before?", ['Yes','No'])
