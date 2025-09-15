@@ -182,7 +182,7 @@ def fill_pdf_with_fitz(payload, extra_fields):
     #draw(294, 320, f"Been here before? {extra_fields.get('prev_visit')}")
     owner_visit_coord = {"Yes": (230, 318),
                        "No": (270, 318)}
-    coords_owner = owner_visit_coord.get(extra_fields.get('pet_prev_visit'))
+    coords_owner = owner_visit_coord.get(extra_fields.get('prev_visit'))
     if coords_owner:
         draw(coords_owner, 'X')
 
