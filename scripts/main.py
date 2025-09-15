@@ -3,9 +3,6 @@ import json
 import re
 import requests
 import random
-from reportlab.pdfgen import canvas
-from reportlab.lib.pagesizes import letter
-from PyPDF2 import PdfReader, PdfWriter
 import io
 from pathlib import Path
 import fitz
@@ -184,17 +181,19 @@ def fill_pdf_with_fitz(payload, extra_fields):
     draw(294, 320, f"Been here before? {extra_fields.get('prev_visit')}")
 
     # === PET INFO ===
+    species_label = next(k for k, v in species_map.items() if v == payload['patient_species'])
+    breed_label = next(k for k, v in breed_map.items() if v == payload['patient_breed'])
     draw(85, 358, payload['patient_name'])
-    draw(483, 359, payload['patient_species'])  # Consider converting ID to label if needed
-    draw(80, 379, payload['patient_breed'])    # Same here
-    draw(483, 301, f"{payload['birthday_month']}/{payload['birthday_day']}/{payload['birthday_year']}")
+    draw(483, 359, species_label)  # Consider converting ID to label if needed
+    draw(80, 379, breed_label)    # Same here
+    draw(483, 401, f"{payload['birthday_month']}/{payload['birthday_day']}/{payload['birthday_year']}")
     age = 2025 - payload['birthday_year']
     draw(400, 380, f"{age}")
     draw(287, 378, extra_fields.get("color", ""))
     draw(320, 422, f"Seen before? {extra_fields.get('pet_prev_visit')}")
     draw(88, 458, extra_fields.get("doctor", ""))
     draw(308, 458, extra_fields.get("clinic_name", ""))
-
+#TODO: Revert the ID to the name for species and breed. Add conditional label filling for gender and sprayed neutered (4 combinations max)
     # Save to in-memory PDF buffer
     output = io.BytesIO()
     doc.save(output)
