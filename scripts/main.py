@@ -179,7 +179,12 @@ def fill_pdf_with_fitz(payload, extra_fields):
     draw(442, 254, extra_fields.get("employer", ""))
     draw(213, 276, extra_fields.get("drive_lic", ""))
     draw(493, 277, f"{extra_fields.get('owner_month')}/{extra_fields.get('owner_day')}/{extra_fields.get('owner_year')}")
-    draw(294, 320, f"Been here before? {extra_fields.get('prev_visit')}")
+    #draw(294, 320, f"Been here before? {extra_fields.get('prev_visit')}")
+    owner_visit_coord = {"Yes": (230, 318),
+                       "No": (270, 318)}
+    coords_owner = owner_visit_coord.get(extra_fields.get('pet_prev_visit'))
+    if coords_owner:
+        draw(coords_owner, 'X')
 
     # === PET INFO ===
     species_label = next(k for k, v in species_map.items() if v == payload['patient_species'])
@@ -191,7 +196,12 @@ def fill_pdf_with_fitz(payload, extra_fields):
     age = 2025 - payload['birthday_year']
     draw(400, 380, f"{age}")
     draw(287, 378, extra_fields.get("color", ""))
-    draw(320, 422, f"Seen before? {extra_fields.get('pet_prev_visit')}")
+    #draw(320, 422, f"Seen before? {extra_fields.get('pet_prev_visit')}")
+    pet_visit_coord = {"Yes": (260,420),
+                       "No": (296,420)}
+    coords_pet = pet_visit_coord.get(extra_fields.get('pet_prev_visit'))
+    if coords_pet:
+        draw(coords_pet, 'X')
     draw(88, 458, extra_fields.get("doctor", ""))
     draw(308, 458, extra_fields.get("clinic_name", ""))
     sex_coords = {
