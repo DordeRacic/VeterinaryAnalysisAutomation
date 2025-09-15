@@ -6,8 +6,8 @@ import requests
 
 # === CONFIGURATION ===
 SERVICE_TOKEN = st.secrets['api']['service_token']
-CATALOGUE_URL = "http://test.pro4eyes.com/api/external_catalogues.php"
-PATIENT_ADD_URL = "http://test.pro4eyes.com/api/external_patient_add.php"
+CATALOGUE_URL = "http://pro4eyes.com/api/external_catalogues.php"
+PATIENT_ADD_URL = "http://pro4eyes.com/api/external_patient_add.php"
 
 # === CACHING REFERENCE DATA (Species, Breeds, Sex IDs) ===
 @st.cache_data(ttl=3600)
