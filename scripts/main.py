@@ -46,8 +46,11 @@ if not st.session_state.authenticated:
         if submit:
             if token_input == AUTH_TOKEN:
                 st.session_state.authenticated = True
+                st.experminetal_rerun()
             else:
-                st.stop()
+                st.error("Invalid Token")
+
+        st.stop()
 # === UI FORM ===
 st.markdown("""
 <style>
