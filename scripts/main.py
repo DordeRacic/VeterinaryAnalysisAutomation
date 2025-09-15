@@ -39,27 +39,28 @@ if data_path.exists():
 else:
     local_data = []
 
-#=== SEND EMAIL AUTOMATICALLY ===
-    def send_email_with_pdf(pdf_bytes, filename,patient_name):
-        email_config = st.secrets['email']
 
-        msg = EmailMessage()
-        msg['Subject']= f"New Patient Intake: {patient_name}"
-        msg['From'] = email_config['sender_email']
-        msg['To'] = email_config['recipient_email']
-        msg.set_content("Attached is the completed patient intake form.")
+    # === SEND EMAIL AUTOMATICALLY ===
+def send_email_with_pdf (pdf_bytes, filename, patient_name):
+    email_config = st.secrets['email']
 
-        msg.add_attachment(pdf_bytes,maintype='application', subtype='pdf', filename= filename)
+    msg = EmailMessage()
+    msg['Subject'] = f"New Patient Intake: {patient_name}"
+    msg['From'] = email_config['sender_email']
+    msg['To'] = email_config['recipient_email']
+    msg.set_content("Attached is the completed patient intake form.")
 
-        try:
-            with smtplib.SMTP(email_config["smtp_server"], email_config["smtp_port"]) as server:
-                server.starttls()
-                server.login(email_config["sender_email"], email_config["sender_password"])
-                server.send_message(msg)
-            return True
-        except Exception as e:
-            st.error(f"Email failed to send: {e}")
-            return False
+    msg.add_attachment(pdf_bytes, maintype='application', subtype='pdf', filename=filename)
+
+    try:
+        with smtplib.SMTP(email_config["smtp_server"], email_config["smtp_port"]) as server:
+            server.starttls()
+            server.login(email_config["sender_email"], email_config["sender_password"])
+            server.send_message(msg)
+        return True
+    except Exception as e:
+        st.error(f"Email failed to send: {e}")
+        return False
 # === CAPTCHA ===
 if "captcha_passed" not in st.session_state:
     st.session_state.captcha_passed = False
