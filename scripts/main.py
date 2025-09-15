@@ -36,23 +36,6 @@ if data_path.exists():
 else:
     local_data = []
 
-"""# === USER TOKEN AUTH ===
-if "authenticated" not in st.session_state:
-    st.session_state.authenticated = False
-
-if not st.session_state.authenticated:
-    with st.form("auth_form"):
-        token_input = st.text_input("Enter Access Token", type="password")
-        submit = st.form_submit_button("Submit")
-
-        if submit:
-            if token_input == AUTH_TOKEN:
-                st.session_state.authenticated = True
-            else:
-                st.error("Invalid Token")
-
-        st.stop()"""
-
 # === CAPTCHA ===
 if "captcha_text" not in st.session_state:
     st.session_state.captcha_text =  ''.join(random.choices(string.ascii_uppercase + string.digits, k=5))
