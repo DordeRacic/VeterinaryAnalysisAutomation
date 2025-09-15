@@ -164,7 +164,6 @@ def fill_pdf_with_fitz(payload, extra_fields):
         if text:
             page.insert_text((x, y), str(text), fontsize=font_size, fontname=font)
 
-    rectangle = fitz.Rect(50,50,70,70)
 
     # === CLIENT INFO ===
     draw(207, 173, f"{payload['patient_owner_firstname']}")
@@ -205,7 +204,7 @@ def fill_pdf_with_fitz(payload, extra_fields):
     coords = sex_coords.get(payload["patient_sex"])
     if coords:
         for coord in coords:
-            draw(*coord, rectangle)
+            draw(*coord, 'X')
 
 #TODO: Revert the ID to the name for species and breed. Add conditional label filling for gender and sprayed neutered (4 combinations max)
     # Save to in-memory PDF buffer
