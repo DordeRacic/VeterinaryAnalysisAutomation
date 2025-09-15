@@ -3,7 +3,6 @@ import json
 import re
 import requests
 import random
-
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import letter
 from PyPDF2 import PdfReader, PdfWriter
