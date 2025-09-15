@@ -37,27 +37,29 @@ else:
     local_data = []
 
 # === CAPTCHA ===
-if "captcha_text" not in st.session_state:
-    st.session_state.captcha_text =  ''.join(random.choices(string.ascii_uppercase + string.digits, k=5))
+if "captcha_passed" not in st.session_state:
+    st.session_state.captcha_passed = False
 
-# Generate the CAPTCHA image
-if "captcha_answer" not in st.session_state:
-    a, b = random.randint(1, 9), random.randint(1, 9)
-    st.session_state.captcha_question = f"{a} + {b}"
-    st.session_state.captcha_answer = str(a + b)
+if not st.session_state.captcha_passed:
+    if "captcha_answer" not in st.session_state:
+        a, b = random.randint(1, 9), random.randint(1, 9)
+        st.session_state.captcha_question = f"{a} + {b}"
+        st.session_state.captcha_answer = str(a + b)
 
-st.write("Please solve this to prove you're human:")
-st.write(f"**{st.session_state.captcha_question} = ?**")
-captcha_input = st.text_input("Answer:")
+    st.markdown("### Please solve this to begin:")
+    st.write(f"**{st.session_state.captcha_question} = ?**")
+    captcha_input = st.text_input("Answer:")
 
-if st.button("Submit"):
-    if captcha_input.strip() == st.session_state.captcha_answer:
-        st.success("CAPTCHA passed!")
-        del st.session_state["captcha_answer"]
-        del st.session_state["captcha_question"]
-    else:
-        st.error("Incorrect answer. Please try again.")
-        st.stop()
+    if st.button("Verify CAPTCHA", key="captcha_button"):
+        if captcha_input.strip() == st.session_state.captcha_answer:
+            st.success("CAPTCHA passed!")
+            st.session_state.captcha_passed = True
+            del st.session_state["captcha_answer"]
+            del st.session_state["captcha_question"]
+            st.rerun()
+        else:
+            st.error("Incorrect answer. Please try again.")
+    st.stop()
 
 # === UI FORM ===
 st.markdown("""
