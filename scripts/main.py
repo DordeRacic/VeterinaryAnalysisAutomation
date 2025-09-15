@@ -184,7 +184,7 @@ def fill_pdf_with_fitz(payload, extra_fields):
                        "No": (270, 318)}
     coords_owner = owner_visit_coord.get(extra_fields.get('prev_visit'))
     if coords_owner:
-        draw(coords_owner, 'X')
+        draw(*coords_owner, 'X')
 
     # === PET INFO ===
     species_label = next(k for k, v in species_map.items() if v == payload['patient_species'])
@@ -201,7 +201,7 @@ def fill_pdf_with_fitz(payload, extra_fields):
                        "No": (296,420)}
     coords_pet = pet_visit_coord.get(extra_fields.get('pet_prev_visit'))
     if coords_pet:
-        draw(coords_pet, 'X')
+        draw(*coords_pet, 'X')
     draw(88, 458, extra_fields.get("doctor", ""))
     draw(308, 458, extra_fields.get("clinic_name", ""))
     sex_coords = {
