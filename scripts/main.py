@@ -334,13 +334,6 @@ if submit_button:
                     patient_name=payload["patient_name"]
                 )
 
-                st.download_button(
-                    label="Download Completed PDF",
-                    data=pdf_filled.getvalue(),
-                    file_name=f"{payload['patient_name']}_intake_form.pdf",
-                    mime="application/pdf"
-                )
-
                 st.success(f"Patient uploaded successfully! ID: {result['patient_id']}")
                 st.balloons()
             else:
