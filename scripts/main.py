@@ -106,12 +106,14 @@ with col1:
         with zip_col:
             zip_code = st.text_input("Zip Code:")
 
-
+# === ADD CANINE INDEX FOR SPECIES ===
+species_keys = sorted(species_map.keys())
+canine_index = species_keys.index("Canine")
 with col2:
     with st.container(border=True):
         st.subheader("Patient Information")
         pet_name = st.text_input("Pet Name:")
-        breed = st.selectbox("Breed", sorted(breed_map.keys()))
+        breed = st.selectbox("Breed", sorted(breed_map.keys()))   #TODO: Make Canine as pre-filled field
         dob_col1, dob_col2, dob_col3 = st.columns(3)
         with dob_col1:
             day = st.selectbox("Day", list(range(1, 32)))
@@ -120,7 +122,7 @@ with col2:
         with dob_col3:
             year = st.selectbox("Year", list(range(2000, 2025)))
         patient_sex = st.selectbox("Sex", sorted(sex_map.keys()))
-        patient_species = st.selectbox("Species", sorted(species_map.keys()))
+        patient_species = st.selectbox("Species", species_keys, index= canine_index)
 
 agree = st.checkbox("I confirm the information is correct.")
 submit_button = st.button("Submit")
