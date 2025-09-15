@@ -3,6 +3,12 @@ import json
 from pathlib import Path
 import re
 import requests
+from captcha.image import ImageCaptcha
+from captcha.image import ImageCaptcha
+import random
+import string
+from PIL import Image
+import io
 
 # === CONFIGURATION ===
 SERVICE_TOKEN = st.secrets['api']['service_token']
@@ -34,7 +40,7 @@ if data_path.exists():
 else:
     local_data = []
 
-# === USER TOKEN AUTH ===
+"""# === USER TOKEN AUTH ===
 if "authenticated" not in st.session_state:
     st.session_state.authenticated = False
 
@@ -49,7 +55,32 @@ if not st.session_state.authenticated:
             else:
                 st.error("Invalid Token")
 
-        st.stop()
+        st.stop()"""
+
+# === CAPTCHA ===
+if "captcha_text" not in st.session_state:
+    st.session_state.captcha_text =  ''.join(random.choices(string.ascii_uppercase + string.digits, k=5))
+
+# Generate the CAPTCHA image
+image = ImageCaptcha()
+captcha_image = image.generate_image(st.session_state.captcha_text)
+
+# Display image
+buf = io.BytesIO()
+captcha_image.save(buf, format='PNG')
+st.image(buf.getvalue(), caption="Enter the text above")
+
+# Input field
+user_input = st.text_input("Enter CAPTCHA text")
+
+# Validation
+if st.button("Verify CAPTCHA"):
+    if user_input.strip().upper() == st.session_state.captcha_text:
+        st.success("CAPTCHA verified!")
+        del st.session_state["captcha_text"]
+    else:
+        st.error("Incorrect CAPTCHA")
+
 # === UI FORM ===
 st.markdown("""
 <style>
