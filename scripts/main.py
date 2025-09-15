@@ -155,9 +155,9 @@ submit_button = st.button("Submit")
 def fill_pdf_with_fitz(payload, extra_fields):
     pdf_path = Path(__file__).resolve().parents[1] / "files" / "Client Information Sheet - CR, QC 2025.pdf"
     doc = fitz.open(pdf_path)
-    page = doc[0
+    page = doc[0]
 
-    
+
 
     # Set base font and size
     font_size = 10
