@@ -179,16 +179,18 @@ def fill_pdf_with_fitz(payload, extra_fields):
     draw(386, 233, extra_fields.get("work_no", ""))
     draw(137, 254, extra_fields.get("alt_no", ""))
     draw(442, 254, extra_fields.get("employer", ""))
-    draw(100, 510, extra_fields.get("drive_lic", ""))
-    draw(208, 271, f"{extra_fields.get('owner_month')}/{extra_fields.get('owner_day')}/{extra_fields.get('owner_year')}")
-    draw(230, 317, f"Been here before? {extra_fields.get('prev_visit')}")
+    draw(213, 276, extra_fields.get("drive_lic", ""))
+    draw(493, 277, f"{extra_fields.get('owner_month')}/{extra_fields.get('owner_day')}/{extra_fields.get('owner_year')}")
+    draw(294, 320, f"Been here before? {extra_fields.get('prev_visit')}")
 
     # === PET INFO ===
     draw(85, 358, payload['patient_name'])
     draw(483, 359, payload['patient_species'])  # Consider converting ID to label if needed
     draw(80, 379, payload['patient_breed'])    # Same here
     draw(483, 301, f"{payload['birthday_month']}/{payload['birthday_day']}/{payload['birthday_year']}")
-    draw(283, 378, extra_fields.get("color", ""))
+    age = 2025 - payload['birthday_year']
+    draw(400, 380, f"{age}")
+    draw(287, 378, extra_fields.get("color", ""))
     draw(320, 422, f"Seen before? {extra_fields.get('pet_prev_visit')}")
     draw(88, 458, extra_fields.get("doctor", ""))
     draw(308, 458, extra_fields.get("clinic_name", ""))
