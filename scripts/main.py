@@ -45,6 +45,7 @@ def format_email_body(payload, extra_fields):
     lines = []
     species_label = next(k for k, v in species_map.items() if v == payload['patient_species'])
     breed_label = next(k for k, v in breed_map.items() if v == payload['patient_breed'])
+    sex_label = next(k for k,v in sex_map.items() if v == payload['patient_sex'])
 
     lines.append("**Owner Information**")
     lines.append(f"Name: {payload['patient_owner_firstname']} {payload['patient_owner_lastname']}")
@@ -63,7 +64,7 @@ def format_email_body(payload, extra_fields):
     lines.append(f"Pet Name: {payload['patient_name']}")
     lines.append(f"Species: {species_label}")
     lines.append(f"Breed: {breed_label}")
-    lines.append(f"Sex ID: {payload['patient_sex']}")
+    lines.append(f"Sex: {sex_label}")
     lines.append(f"Color: {extra_fields.get('color', '')}")
     lines.append(f"Birthday: {payload['birthday_month']}/{payload['birthday_day']}/{payload['birthday_year']}")
     lines.append(f"Seen Before: {extra_fields.get('pet_prev_visit')}")
