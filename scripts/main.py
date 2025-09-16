@@ -41,14 +41,46 @@ else:
 
 
     # === SEND EMAIL AUTOMATICALLY ===
-def send_email_with_pdf (pdf_bytes, filename, patient_name):
+def format_email_body(payload, extra_fields):
+    lines = []
+
+    lines.append("**Owner Information**")
+    lines.append(f"Name: {payload['patient_owner_firstname']} {payload['patient_owner_lastname']}")
+    lines.append(f"Address: {payload.get('patient_address', '')}")
+    lines.append(f"City/State/ZIP: {payload.get('city', '')}, {payload.get('state', '')} {payload.get('zip', '')}")
+    lines.append(f"Phone: {payload.get('phone', '')}")
+    lines.append(f"Email: {payload.get('email', '')}")
+    lines.append(f"Work Phone: {extra_fields.get('work_no', '')}")
+    lines.append(f"Alt Phone: {extra_fields.get('alt_no', '')}")
+    lines.append(f"Employer: {extra_fields.get('employer', '')}")
+    lines.append(f"Driver's License: {extra_fields.get('drive_lic', '')}")
+    lines.append(f"DOB: {extra_fields.get('owner_month')}/{extra_fields.get('owner_day')}/{extra_fields.get('owner_year')}")
+    lines.append(f"Previous Client: {extra_fields.get('prev_visit')}")
+
+    lines.append("\n**Patient Information**")
+    lines.append(f"Pet Name: {payload['patient_name']}")
+    lines.append(f"Species ID: {payload['patient_species']}")
+    lines.append(f"Breed ID: {payload['patient_breed']}")
+    lines.append(f"Sex ID: {payload['patient_sex']}")
+    lines.append(f"Color: {extra_fields.get('color', '')}")
+    lines.append(f"Birthday: {payload['birthday_month']}/{payload['birthday_day']}/{payload['birthday_year']}")
+    lines.append(f"Seen Before: {extra_fields.get('pet_prev_visit')}")
+
+    lines.append("\n**Referring Veterinarian**")
+    lines.append(f"Doctor: {extra_fields.get('doctor', '')}")
+    lines.append(f"Clinic: {extra_fields.get('clinic_name', '')}")
+
+    return "\n".join(lines)
+
+def send_email_with_pdf(pdf_bytes, filename, patient_name, payload, extra_fields):
     email_config = st.secrets['email']
 
     msg = EmailMessage()
     msg['Subject'] = f"New Patient Intake: {patient_name}"
     msg['From'] = email_config['sender_email']
     msg['To'] = email_config['recipient_email']
-    msg.set_content("Attached is the completed patient intake form.")
+    msg.set_content(format_email_body(payload, extra_fields))
+
 
     msg.add_attachment(pdf_bytes, maintype='application', subtype='pdf', filename=filename)
 
@@ -332,7 +364,9 @@ if submit_button:
                 send_email_with_pdf(
                     pdf_bytes=pdf_filled.getvalue(),
                     filename=f"{payload['patient_name']}_intake_form.pdf",
-                    patient_name=payload["patient_name"]
+                    patient_name=payload["patient_name"],
+                    payload=payload,
+                    extra_fields= extra_fields
                 )
 
                 st.success(f"Patient uploaded successfully! ID: {result['patient_id']}")
