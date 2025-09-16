@@ -43,6 +43,8 @@ else:
     # === SEND EMAIL AUTOMATICALLY ===
 def format_email_body(payload, extra_fields):
     lines = []
+    species_label = next(k for k, v in species_map.items() if v == payload['patient_species'])
+    breed_label = next(k for k, v in breed_map.items() if v == payload['patient_breed'])
 
     lines.append("**Owner Information**")
     lines.append(f"Name: {payload['patient_owner_firstname']} {payload['patient_owner_lastname']}")
@@ -59,8 +61,8 @@ def format_email_body(payload, extra_fields):
 
     lines.append("\n**Patient Information**")
     lines.append(f"Pet Name: {payload['patient_name']}")
-    lines.append(f"Species ID: {payload['patient_species']}")
-    lines.append(f"Breed ID: {payload['patient_breed']}")
+    lines.append(f"Species: {species_label}")
+    lines.append(f"Breed: {breed_label}")
     lines.append(f"Sex ID: {payload['patient_sex']}")
     lines.append(f"Color: {extra_fields.get('color', '')}")
     lines.append(f"Birthday: {payload['birthday_month']}/{payload['birthday_day']}/{payload['birthday_year']}")
