@@ -170,6 +170,7 @@ with col1:
         with zip_col:
             zip_code = st.text_input("Zip Code:")
 
+        dob = st.markdown("**Owner's Date of Birth**")
         dob_col1, dob_col2, dob_col3 = st.columns(3)
         with dob_col1:
             owner_day = st.selectbox("Day", list(range(1, 32)))
@@ -191,6 +192,7 @@ with col2:
         pet_name = st.text_input("Pet Name:")
         breed = st.selectbox("Breed", sorted(breed_map.keys()))
         color = st.text_input("Color")
+        dob = st.markdown("**Patient's Date of Birth**")
         dob_col1, dob_col2, dob_col3 = st.columns(3)
         with dob_col1:
             day = st.selectbox("Day", list(range(1, 32)), key='pet_day')
