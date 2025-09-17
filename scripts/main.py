@@ -210,7 +210,7 @@ agree = st.checkbox("I confirm the information is correct.")
 submit_button = st.button("Submit")
 
 def fill_pdf_with_fitz(payload, extra_fields):
-    pdf_path = Path(__file__).resolve().parents[1] / "files" / "Client Information Sheet - CR, QC 2025.pdf"
+    pdf_path = Path(__file__).resolve().parents[1] / "files" / "Client Information Sheet - CR, QC 2025- Updated.pdf"
     doc = fitz.open(pdf_path)
     page = doc[0]
 
