@@ -1,76 +1,103 @@
-Filename,Unnamed: 1,Unnamed: 2,Blind,Visual,Visually Impaired,Unnamed: 6,Unnamed: 7,Comment,Unnamed: 9,Assign value 1 in the category for which you believe dog belongs based on the results of the visual maze testing,Preemptive Navigation,Reactive Turn,Disoriented Circling,Mean Speed (pixels/sec),Visual Status
-20.wmv,,,,,1.0,,,Close to blind,,,,,,,
-20081027155213.mpg,,,,,1.0,,,probably had decreased sight,,,,,,,
-20081106132506.mpg,,,,,1.0,,,there is no enough data,,,,,,,
-20081120105249.mpg,,,,,1.0,,,,,,,,,,
-20081128110242.mpg,,,,,1.0,,,,,,,,,,
-20090126110954.mpg,,,,,1.0,,,,,,,,,,
-20120329012612.mpg,,,,,1.0,,,,,,,,,,
-20140221_132236.mp4,,,,,1.0,,,,,,39.0,136.0,19.0,1151.810789,Visually Impaired
-20140515_123936.mp4,,,,,1.0,,,,,,34.0,71.0,10.0,983.4022559,Visually Impaired
-20140711_124858.mp4,,,,,1.0,,,there is no enough data,,,57.0,98.0,12.0,892.4961946,Visually Impaired
-20150520_141835.mp4,,,,,1.0,,,,,,29.0,79.0,14.0,1083.591593,Visually Impaired
-20151016_114556.mp4,,,,,1.0,,,,,,31.0,58.0,12.0,1006.269628,Visually Impaired
-20151120_113326.mp4,,,,,1.0,,,,,,37.0,63.0,10.0,1082.628988,Visually Impaired
-20160520223156.mpg,,,,,1.0,,,,,,,,,,
-20160522221127.mpg,,,,,1.0,,,,,,,,,,
-20160525213434.mpg,,,,,1.0,,,,,,,,,,
-20160605214326.mpg,,,,,1.0,,,,,,,,,,
-20160731231833.mpg,,,,,1.0,,,,,,,,,,
-2018-03-06_09-19-39_000.MOV,,,,,1.0,,,,,,7.0,15.0,1.0,1163.3575,Blind
-2018-03-20_11-31-20_000.MOV,,,,,1.0,,,,,,17.0,24.0,2.0,1063.143125,Visually Impaired
-2018-04-13_11-09-53_000.MOV,,,,,1.0,,,appears with problems but didnt meet any object. lucky?,,,13.0,29.0,4.0,1342.989804,Visually Impaired
-2018-05-14_10-59-29_000.MOV,,,,,1.0,,,there is no enough data,,,5.0,28.0,7.0,1583.580169,Blind
-2018-05-14_12-58-06_000.MOV,,,,,1.0,,,,,,21.0,37.0,7.0,923.4328321,Visually Impaired
-2018-05-18_13-53-49_000.MOV,,,,,1.0,,,there is no enough data,,,11.0,34.0,4.0,1255.90105,Visually Impaired
-2019-05-17_11-54-36_000.MOV,,,,,1.0,,,there is no enough data,,,29.0,39.0,9.0,816.2900398,Visually Impaired
-2019-06-14_13-29-15_000.MOV,,,,,1.0,,,,,,11.0,37.0,5.0,1105.669434,Visually Impaired
-2019-06-28_11-52-16_000.MOV,,,,,1.0,,,or is too shame or cannot see well,,,21.0,37.0,4.0,961.6332979,Visually Impaired
-2019-08-06_11-16-27_000.MOV,,,,,1.0,,,no info,,,19.0,52.0,8.0,1015.237214,Visually Impaired
-2019-09-27_13-07-06_000.MOV,,,,,1.0,,,,,,14.0,20.0,6.0,699.8168361,Visually Impaired
-2019-12-03_12-08-12_000.MOV,,,,,1.0,,,no info,,,8.0,24.0,6.0,1087.173997,Visually Impaired
-2020-06-18_10-20-08_000.MOV,,,,,1.0,,,,,,38.0,50.0,10.0,695.0955921,Visually Impaired
-2020-07-03_10-45-54_000.MOV,,,,,1.0,,,didn’t hit anything but the head position was suspicions,,,14.0,31.0,4.0,1198.095242,Visually Impaired
-2020-07-03_13-06-58_000.MOV,,,,,1.0,,,almost blind but could see big black things,,,10.0,26.0,3.0,1120.856719,Visually Impaired
-2020-07-03_14-02-26_000.MOV,,,,,1.0,,,"doesn’t look ok, but no enough info",,,29.0,76.0,15.0,971.2334303,Visually Impaired
-2020-07-16_12-05-17_000.MOV,,,,,1.0,,,close to blind,,,43.0,69.0,16.0,957.7484528,Visually Impaired
-2020-08-27_10-02-37_000.MOV,,,,,1.0,,,almost blind but could see big black things,,,13.0,14.0,3.0,587.2902021,Visually Impaired
-2020-12-18_14-20-09_000.mov,,,,,1.0,,,,,,35.0,50.0,9.0,698.1783343,Visually Impaired
-2021-01-22_14-35-51_000.mov,,,,,1.0,,,doesn't move. probably not blind but with decreased sight,,,9.0,39.0,12.0,1007.095334,Visually Impaired
-2021-02-26_11-22-36_000.mov,,,,,1.0,,,,,,21.0,50.0,14.0,854.9840639,Visually Impaired
-2021-03-02_10-36-32_000.mov,,,,,1.0,,,no info at all,,,10.0,42.0,9.0,911.5505857,Visually Impaired
-2021-06-28_15-18-37_000.mov,,,,,1.0,,,,,,114.0,70.0,18.0,534.0657285,Visually Impaired
-2021-07-01_11-50-16_000.mov,,,,,1.0,,,almost blind but could see big black things,,,22.0,41.0,7.0,947.697131,Visually Impaired
-2021-07-26_16-58-23_000.mov,,,,,1.0,,,almost blind but could see big black things,,,27.0,72.0,13.0,1262.790638,Visually Impaired
-2021-08-12_10-44-12_000.mov,,,,,1.0,,,,,,45.0,81.0,10.0,993.9251261,Visually Impaired
-2021-08-27_14-35-57_000.mov,,,,,1.0,,,,,,15.0,33.0,4.0,1102.685387,Visually Impaired
-2021-09-21_17-08-35_000.mov,,,,,1.0,,,there is no enough data,,,8.0,30.0,1.0,1243.24285,Visually Impaired
-2021-11-09_10-01-28_000.mov,,,,,1.0,,,,,,9.0,33.0,1.0,1432.509465,Visually Impaired
-2022-03-25_09-28-34_000.mov,,,,,1.0,,,,,,26.0,37.0,7.0,756.3743726,Visually Impaired
-2022-04-22_14-57-10_000.mov,,,,,1.0,,,"the dog hit his head once, but on the side without an eye",,,37.0,76.0,13.0,1077.475958,Visually Impaired
-2022-08-18_10-27-33_000.mov,,,,,1.0,,,there is no enough data,,,6.0,26.0,2.0,1546.133072,Blind
-2022-08-29_10-46-38_000.mov,,,,,1.0,,,there is no enough data,,,9.0,36.0,3.0,1032.318032,Visually Impaired
-2023-03-16_10-23-03_000.mov,,,,,1.0,,,almost blind,,,29.0,42.0,9.0,1161.64314,Visually Impaired
-2023-07-28_13-38-42_000.mov,,,,,1.0,,,there is no enough data,,,15.0,25.0,4.0,1014.373054,Visually Impaired
-2023-12-14_11-10-13_000.mov,,,,,1.0,,,,,,22.0,28.0,7.0,890.8904039,Visually Impaired
-2024-01-11_11-11-23_000.mov,,,,,1.0,,,,,,8.0,22.0,2.0,1347.321893,Visually Impaired
-2024-04-16_10-28-44_000.mov,,,,,1.0,,,almost blind,,,32.0,63.0,15.0,993.9476508,Visually Impaired
-2024-05-06_15-12-00_000.mov,,,,,1.0,,,probably collided once but the obstacle blocked this fact,,,9.0,23.0,5.0,1326.631434,Visually Impaired
-2024-05-09_11-10-46_000.mov,,,,,1.0,,,no enough data,,,33.0,30.0,9.0,727.9431828,Visually Impaired
-2024-06-21_10-49-08_000.mov,,,,,1.0,,,no enough data,,,19.0,26.0,4.0,887.4845017,Visually Impaired
-2024-09-26_10-06-32_000.mov,,,,,1.0,,,probably was blind but lucky,,,12.0,25.0,4.0,1080.640578,Visually Impaired
-2024-10-01_12-49-28_000.mov,,,,,1.0,,,,,,17.0,32.0,5.0,1039.435937,Visually Impaired
-2024-10-31_11-26-27_000.mov,,,,,1.0,,,probably was blind but lucky,,,25.0,37.0,8.0,851.7093573,Visually Impaired
-2024-12-17_12-23-51_000.mov,,,,,1.0,,,there is no enough data,,,31.0,38.0,9.0,712.4149496,Visually Impaired
-2025-02-03_12-24-18_000.mov,,,,,1.0,,,could see big objects,,,12.0,26.0,8.0,1121.601769,Visually Impaired
-2025-02-11_10-28-40_000.mov,,,,,1.0,,,could see big objects,,,23.0,36.0,4.0,916.7166681,Visually Impaired
-2025-02-20_11-04-48_000.mov,,,,,1.0,,,there is no enough data,,,42.0,101.0,38.0,766.2189656,Visually Impaired
-2025-02-27_11-44-20_000.mov,,,,,1.0,,,almost blind but could see big black things,,,18.0,23.0,6.0,841.9907569,Visually Impaired
-IMG_0188.MOV,,,,,1.0,,,the dog passed the maze but was uncertain,,,18.0,58.0,10.0,1234.703685,Visually Impaired
-IMG_0236.MOV,,,,,1.0,,,there is no enough data,,,32.0,50.0,3.0,1294.377873,Visually Impaired
-IMG_2075.MOV,,,,,1.0,,,,,,28.0,32.0,8.0,709.1351505,Visually Impaired
-IMG_2089.MOV,,,,,1.0,,,almost blind but could see big black things,,,13.0,32.0,5.0,930.5193798,Visually Impaired
-IMG_4578.MOV,,,,,1.0,,,,,,8.0,42.0,5.0,1189.780964,Visually Impaired
-October 2019 exam room camera videos 014.MPG,,,,,1.0,,,"could be with problems, but the movie is too short",,,,,,,
-Samsung Galaxy 10-2013 895.mp4,,,,,1.0,,,there is no enough data,,,27.0,32.0,6.0,478.0841879,Visually Impaired
-video-2012-10-17-14-51-41.mp4,,,,,1.0,,,didn’t hit anything but the head position was suspicions,,,3.0,8.0,3.0,636.9490297,Blind
+Filename,Unnamed: 1,Unnamed: 2,Blind,Visual,Visually Impaired,Comment,Unnamed: 7,Assign value 1 in the category for which you believe dog belongs based on the results of the visual maze testing,Preemptive Navigation,Reactive Turn,Disoriented Circling,Mean Speed (pixels/sec),Visual Status
+20.wmv,,,,,1.0,Close to blind,,,,,,,
+20081027155213.mpg,,,,,1.0,probably had decreased sight,,,,,,,
+20081106132506.mpg,,,,,1.0,there is no enough data,,,,,,,
+20081128110242.mpg,,,,,1.0,Walks slow,,,,,,,
+20081215112334.mpg,,,,,1.0,Walks slow,,,,,,,
+20090123122828.mpg,,,,,1.0,Seems unsure,,,,,,,
+20131120_164243.mp4,,,,,1.0,uses smell for orientation,,,42.0,114.0,7.0,1457.047225,Visually Impaired
+20140221_132236.mp4,,,,,1.0,,,,39.0,136.0,19.0,1151.810789,Visually Impaired
+20140711_124858.mp4,,,,,1.0,Walks slow,,,57.0,98.0,12.0,892.4961946,Visually Impaired
+20140904_104612.mp4,,,,,1.0,,,,74.0,107.0,13.0,1061.94878,Visually Impaired
+20141016_153628.mp4,,,,,1.0,Walks slow and hit on object,,,5.0,32.0,2.0,1360.001096,Blind
+20150520_141835.mp4,,,,,1.0,,,,29.0,79.0,14.0,1083.591593,Visually Impaired
+20150829_104056.mp4,,,,,1.0,walks aimlessly,,,26.0,45.0,6.0,895.1087758,Visually Impaired
+20151016_114556.mp4,,,,,1.0,,,,31.0,58.0,12.0,1006.269628,Visually Impaired
+20160520223156.mpg,,,,,1.0,Try to smell objects,,,,,,,
+20160731231833.mpg,,,,,1.0,,,,,,,,
+2018-03-20_11-31-20_000.MOV,,,,,1.0,Try to smell objects,,,17.0,24.0,2.0,1063.143125,Visually Impaired
+2018-04-13_11-09-53_000.MOV,,,,,1.0,Walks unsure,,,13.0,29.0,4.0,1342.989804,Visually Impaired
+2018-05-14_10-59-29_000.MOV,,,,,1.0,,,,5.0,28.0,7.0,1583.580169,Blind
+2018-05-14_12-58-06_000.MOV,,,,,1.0,,,,21.0,37.0,7.0,923.4328321,Visually Impaired
+2018-11-02_13-53-45_000.MOV,,,,,1.0,Seems to smell objects,,,8.0,29.0,5.0,955.6932607,Visually Impaired
+2019-06-14_13-29-15_000.MOV,,,,,1.0,Walks very slow,,,11.0,37.0,5.0,1105.669434,Visually Impaired
+2019-06-14_14-06-34_000.MOV,,,,,1.0,Walks very slow,,,9.0,25.0,3.0,945.4529086,Visually Impaired
+2019-07-09_10-49-39_000.MOV,,,,,1.0,Walks slow and almost hit object,,,7.0,34.0,2.0,1406.046023,Blind
+2019-08-06_11-16-27_000.MOV,,,,,1.0,Walks very slow,,,19.0,52.0,8.0,1015.237214,Visually Impaired
+2019-10-18_13-07-53_000.MOV,,,,,1.0,Walks slow and almost hit object,,,10.0,26.0,1.0,1285.167152,Visually Impaired
+2020-01-03_11-11-16_000.MOV,,,,,1.0,Seems to smell objects,,,5.0,23.0,3.0,894.2470795,Blind
+2020-04-23_16-23-01_000.MOV,,,,,1.0,Walks very slow,,,20.0,21.0,5.0,812.1977822,Visually Impaired
+2020-05-07_09-48-40_000.MOV,,,,,1.0,Walks without orientation,,,25.0,58.0,9.0,1067.600717,Visually Impaired
+2020-06-04_11-57-49_000.MOV,,,,,1.0,Seems to hear owner,,,6.0,24.0,3.0,1179.468634,Blind
+2020-06-18_10-20-08_000.MOV,,,,,1.0,Seems to smell objects,,,38.0,50.0,10.0,695.0955921,Visually Impaired
+2020-07-03_10-45-54_000.MOV,,,,,1.0,Walks slow,,,14.0,31.0,4.0,1198.095242,Visually Impaired
+2020-07-03_14-02-26_000.MOV,,,,,1.0,Walks slow,,,29.0,76.0,15.0,971.2334303,Visually Impaired
+2020-11-13_13-24-51_000.mov,,,,,1.0,Seems to smell objects,,,31.0,39.0,4.0,1044.901751,Visually Impaired
+2020-11-13_14-20-44_000.mov,,,,,1.0,Seems to hear owner,,,13.0,29.0,4.0,1120.316171,Visually Impaired
+2020-12-18_14-20-09_000.mov,,,,,1.0,Walks without orientation,,,35.0,50.0,9.0,698.1783343,Visually Impaired
+2021-03-02_10-36-32_000.mov,,,,,1.0,Walks without orientation,,,10.0,42.0,9.0,911.5505857,Visually Impaired
+2021-06-29_10-18-12_000.mov,,,,,1.0,Seems to hear owner,,,24.0,42.0,8.0,955.3088765,Visually Impaired
+2021-07-02_12-47-45_000.mov,,,,,1.0,Walks slow,,,10.0,25.0,2.0,1193.923241,Visually Impaired
+2021-07-06_10-57-46_000.mov,,,,,1.0,Walks without orientation,,,35.0,32.0,6.0,705.6928472,Visually Impaired
+2021-08-12_10-32-58_000.mov,,,,,1.0,Seems to hear owner,,,24.0,48.0,8.0,965.7843457,Visually Impaired
+2021-08-16_11-49-15_000.mov,,,,,1.0,Walks slow,,,15.0,36.0,6.0,1253.416201,Visually Impaired
+2021-09-20_16-18-09_000.mov,,,,,1.0,Walks without orientation,,,15.0,39.0,7.0,989.2166198,Visually Impaired
+2021-09-21_17-08-35_000.mov,,,,,1.0,Walks unsure,,,8.0,30.0,1.0,1243.24285,Visually Impaired
+2021-10-11_17-12-55_000.mov,,,,,1.0,Seems to smell objects,,,28.0,57.0,4.0,1134.355562,Visually Impaired
+2021-11-09_10-01-28_000.mov,,,,,1.0,,,,9.0,33.0,1.0,1432.509465,Visually Impaired
+2022-01-25_10-35-49_000.mov,,,,,1.0,,,,30.0,33.0,6.0,874.7026779,Visually Impaired
+2022-02-25_11-34-14_000.mov,,,,,1.0,Walks without orientation,,,11.0,39.0,4.0,1237.741036,Visually Impaired
+2022-04-01_13-46-21_000.mov,,,,,1.0,Walks without orientation,,,18.0,49.0,16.0,898.3088577,Visually Impaired
+2022-07-21_12-12-27_000.mov,,,,,1.0,Seems to smell objects,,,55.0,55.0,7.0,653.4869084,Visually Impaired
+2022-08-18_10-27-33_000.mov,,,,,1.0,Seems to smell objects,,,6.0,26.0,2.0,1546.133072,Blind
+2022-10-07_10-21-01_000.mov,,,,,1.0,Seems to hear calling,,,8.0,35.0,5.0,1241.15443,Visually Impaired
+2022-10-11_10-37-28_000.mov,,,,,1.0,Seems to hear calling,,,4.0,25.0,3.0,1297.114727,Blind
+2023-01-09_17-03-29_000.mov,,,,,1.0,Seems to smell objects,,,44.0,38.0,11.0,633.7956184,Visually Impaired
+2023-02-14_12-32-25_000.mov,,,,,1.0,Seems to smell objects,,,2.0,16.0,1.0,1348.118022,Blind
+2023-03-03_10-27-13_000.mov,,,,,1.0,Seems to smell objects,,,22.0,60.0,21.0,889.0114993,Visually Impaired
+2023-11-30_11-16-30_000.mov,,,,,1.0,Seems to smell objects,,,21.0,45.0,9.0,924.35859,Visually Impaired
+2024-01-11_11-11-23_000.mov,,,,,1.0,Walks very slow,,,8.0,22.0,2.0,1347.321893,Visually Impaired
+2024-03-26_12-15-29_000.mov,,,,,1.0,Seems to smell objects,,,1.0,23.0,1.0,1514.813269,Blind
+2024-04-16_10-28-44_000.mov,,,,,1.0,Hits chair once,,,32.0,63.0,15.0,993.9476508,Visually Impaired
+2024-05-03_12-21-17_000.mov,,,,,1.0,Walks slow,,,4.0,14.0,3.0,990.7483491,Blind
+2024-05-06_15-12-00_000.mov,,,,,1.0,Walks slow,,,9.0,23.0,5.0,1326.631434,Visually Impaired
+2024-05-09_11-10-46_000.mov,,,,,1.0,Walks without orientation,,,33.0,30.0,9.0,727.9431828,Visually Impaired
+2024-06-21_10-49-08_000.mov,,,,,1.0,Seems to smell objects,,,19.0,26.0,4.0,887.4845017,Visually Impaired
+2024-08-20_10-59-50_000.mov,,,,,1.0,,,,23.0,33.0,10.0,1091.002282,Visually Impaired
+2024-08-27_15-16-11_000.mov,,,,,1.0,,,,32.0,52.0,9.0,900.5547575,Visually Impaired
+2024-09-09_11-10-39_000.mov,,,,,1.0,walks straight to the owner,,,10.0,13.0,2.0,941.0227467,Visually Impaired
+2024-09-24_14-46-58_000.mov,,,,,1.0,avoid almost all objects,,,1.0,17.0,0.0,1835.315958,Blind
+2024-09-26_10-06-32_000.mov,,,,,1.0,,,,12.0,25.0,4.0,1080.640578,Visually Impaired
+2024-10-29_11-19-09_000.mov,,,,,1.0,,,,4.0,41.0,6.0,1512.336895,Blind
+2024-11-01_11-05-33_000.mov,,,,,1.0,,,,23.0,54.0,8.0,970.0978708,Visually Impaired
+2024-12-17_12-23-51_000.mov,,,,,1.0,relies on owner voice,,,31.0,38.0,9.0,712.4149496,Visually Impaired
+2025-02-03_12-24-18_000.mov,,,,,1.0,avoid all objects but probadly smells them,,,12.0,26.0,8.0,1121.601769,Visually Impaired
+2025-02-27_11-44-20_000.mov,,,,,1.0,avoid all objects but probadly smells them,,,18.0,23.0,6.0,841.9907569,Visually Impaired
+2025-03-17_11-25-29_000.mov,,,,,1.0,,,,5.0,32.0,4.0,1565.965639,Blind
+2025-03-20_12-54-58_000.mov,,,,,1.0,,,,19.0,29.0,6.0,762.9433676,Visually Impaired
+2025-03-24_12-10-20_000.mov,,,,,1.0,,,,7.0,27.0,2.0,1462.571281,Blind
+25.wmv,,,,,1.0,,,,,,,,
+FC617017.wmv,,,,,1.0,,,,,,,,
+IMG_0188.MOV,,,,,1.0,avoid all objects but probadly smells them,,,18.0,58.0,10.0,1234.703685,Visually Impaired
+IMG_0236.MOV,,,,,1.0,walks aimlessly,,,32.0,50.0,3.0,1294.377873,Visually Impaired
+IMG_0374.MOV,,,,,1.0,,,,27.0,35.0,4.0,776.0020008,Visually Impaired
+IMG_1379.MOV,,,,,1.0,,,,27.0,48.0,10.0,886.3277192,Visually Impaired
+IMG_1915.MOV,,,,,1.0,,,,38.0,62.0,2.0,832.6703828,Visually Impaired
+IMG_1944.MOV,,,,,1.0,,,,23.0,39.0,8.0,980.2098223,Visually Impaired
+IMG_2089.MOV,,,,,1.0,,,,13.0,32.0,5.0,930.5193798,Visually Impaired
+IMG_3847.MOV,,,,,1.0,,,,23.0,49.0,10.0,1087.635576,Visually Impaired
+IMG_3855.MOV,,,,,1.0,,,,14.0,38.0,5.0,1113.552176,Visually Impaired
+IMG_4079.MOV,,,,,1.0,,,,15.0,34.0,5.0,975.6733475,Visually Impaired
+IMG_4331.MOV,,,,,1.0,,,,19.0,53.0,6.0,1055.293803,Visually Impaired
+IMG_4333.MOV,,,,,1.0,,,,15.0,31.0,8.0,1021.084004,Visually Impaired
+IMG_4345.MOV,,,,,1.0,walks slow without orientation,,,8.0,19.0,4.0,1011.859672,Visually Impaired
+IMG_4578.MOV,,,,,1.0,walks slow without clear orientation,,,8.0,42.0,5.0,1189.780964,Visually Impaired
+IMG_4762.MOV,,,,,1.0,,,,31.0,33.0,6.0,849.3497973,Visually Impaired
+iPhone Aug 31 2016 083.MOV,,,,,1.0,Walks very slow,,,13.0,35.0,4.0,1492.421571,Visually Impaired
+iPhone Aug 31 2016 313.MOV,,,,,1.0,,,,13.0,35.0,5.0,1121.849999,Visually Impaired
+iPhone Aug 31 2016 368.MOV,,,,,1.0,,,,10.0,20.0,2.0,1290.478629,Visually Impaired
+iPhone Aug 31 2016 555.MOV,,,,,1.0,Walks very slow,,,51.0,64.0,12.0,740.9139081,Visually Impaired
+Mov25.wmv,,,,,1.0,Walks very slow,,,,,,,
+October 2019 exam room camera videos 010.MPG,,,,,1.0,Walks very slow,,,,,,,
+October 2019 exam room camera videos 011.MPG,,,,,1.0,Walks very slow,,,,,,,
+Sassy maze after retinal illumination4.mpg,,,,,1.0,Walks slow,,,,,,,

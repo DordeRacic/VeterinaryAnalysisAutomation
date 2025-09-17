@@ -48,7 +48,8 @@ def format_email_body(payload, extra_fields):
     sex_label = next(k for k,v in sex_map.items() if v == payload['patient_sex'])
 
     lines.append("**Owner Information**")
-    lines.append(f"Name: {payload['patient_owner_firstname']} {payload['patient_owner_lastname']}")
+    lines.append(f"Name: {payload['patient_owner_firstname', '']} {payload['patient_owner_lastname']}")
+    lines.append(f"Secondary Contact: {extra_fields.get('sec_owner_firstname', '')} {extra_fields.get('sec_owner_lastname')}")
     lines.append(f"Address: {payload.get('patient_address', '')}")
     lines.append(f"City/State/ZIP: {payload.get('city', '')}, {payload.get('state', '')} {payload.get('zip', '')}")
     lines.append(f"Phone: {payload.get('phone', '')}")
@@ -230,6 +231,8 @@ def fill_pdf_with_fitz(payload, extra_fields):
     # === CLIENT INFO ===
     draw(207, 173, f"{payload['patient_owner_firstname']}")
     draw(391, 173, payload.get('patient_owner_lastname', ''))
+    draw(207, 193, extra_fields.get("sec_owner_firstname", ""))
+    draw(391, 193, extra_fields.get("sec_owner_lastname", ""))
     draw(91, 217, payload.get('patient_address', ''))
     draw(330, 217, f"{payload.get('city', '')}")
     draw(448, 217, payload.get('state', ''))
@@ -349,8 +352,16 @@ if submit_button:
 
             if response.status_code == 200 and result.get("result") == "success":
                 # Collect extra fields from form for the PDF
+                # Split secondary owner name
+                sec_first, sec_last = ("", "")
+                if sec_owner_name and " " in sec_owner_name:
+                    sec_first, sec_last = sec_owner_name.split(" ", 1)
+                elif sec_owner_name:
+                    sec_first = sec_owner_name  # fallback if only one name entered
+
                 extra_fields = {
-                    "sec_owner_name": sec_owner_name,
+                    "sec_owner_firstname": sec_first,
+                    "sec_owner_lastname": sec_last,
                     "work_no": work_no,
                     "alt_no": alt_no,
                     "employer": employer,
@@ -379,17 +390,3 @@ if submit_button:
             else:
                 st.error(f"API Error: {result.get('message', response.text)}")
                 raise Exception("API returned failure")
-
-        except Exception as e:
-            st.warning("API submission failed. Saving locally as backup.")
-            local_data.append(payload)
-            with open(data_path, 'w') as f:
-                json.dump(local_data, f, indent=2)
-            st.success("Data saved locally.")
-
-
-
-
-
-        #TODO: Create new fields for secondary contact information (optional), alternative phone number (optional), make total age or DOB (if known) choice
-        #TODO: Add Doctor field (optional) and Clinic Name (mandatory)
