@@ -11,9 +11,9 @@ from email.message import EmailMessage
 
 
 # === CONFIGURATION ===
-SERVICE_TOKEN = st.secrets['api']['service_token_test']
-CATALOGUE_URL = "http://test.pro4eyes.com/api/external_catalogues.php"
-PATIENT_ADD_URL = "http://test.pro4eyes.com/api/external_patient_add.php"
+SERVICE_TOKEN = st.secrets['api']['service_token_prod']
+CATALOGUE_URL = st.secrets['url']['catalogue_url']
+PATIENT_ADD_URL = st.secrets['url']['patient_add_url']
 
 # === CACHING REFERENCE DATA (Species, Breeds, Sex IDs) ===
 @st.cache_data(ttl=3600)
