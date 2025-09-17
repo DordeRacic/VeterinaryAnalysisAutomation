@@ -40,7 +40,7 @@ else:
     local_data = []
 
 
-    # === SEND EMAIL AUTOMATICALLY ===
+# === SEND EMAIL AUTOMATICALLY ===
 def format_email_body(payload, extra_fields):
     lines = []
     species_label = next(k for k, v in species_map.items() if v == payload['patient_species'])
@@ -48,7 +48,7 @@ def format_email_body(payload, extra_fields):
     sex_label = next(k for k,v in sex_map.items() if v == payload['patient_sex'])
 
     lines.append("**Owner Information**")
-    lines.append(f"Name: {payload['patient_owner_firstname', '']} {payload['patient_owner_lastname']}")
+    lines.append(f"Name: {payload.get('patient_owner_firstname', '')} {payload.get('patient_owner_lastname', '')}")
     lines.append(f"Secondary Contact: {extra_fields.get('sec_owner_firstname', '')} {extra_fields.get('sec_owner_lastname')}")
     lines.append(f"Address: {payload.get('patient_address', '')}")
     lines.append(f"City/State/ZIP: {payload.get('city', '')}, {payload.get('state', '')} {payload.get('zip', '')}")
@@ -389,4 +389,8 @@ if submit_button:
                 st.balloons()
             else:
                 st.error(f"API Error: {result.get('message', response.text)}")
-                raise Exception("API returned failure")
+                st.stop()
+
+        except Exception as e:
+            st.error(f"Request failed: {e}")
+            st.stop()
