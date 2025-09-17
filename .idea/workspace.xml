@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6abb418a-f3bd-4f8f-b379-0b90da429441" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/.streamlit/secrets.toml" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/.streamlit/secrets.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/maze_test_grouping.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/maze_test_grouping.py" afterDir="false" />
-    </list>
+    <list default="true" id="6abb418a-f3bd-4f8f-b379-0b90da429441" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
