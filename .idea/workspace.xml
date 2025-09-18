@@ -5,16 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6abb418a-f3bd-4f8f-b379-0b90da429441" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/scripts/maze_merging_final_files.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/pdf_edit.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/blind_group.csv" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/blind_group.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scripts/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/maze_test_grouping.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/maze_test_grouping.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/merged_results_expert.csv" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/merged_results_expert.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/merged_results_non_expert.csv" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/merged_results_non_expert.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/visual_group.csv" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/visual_group.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/visually_impaired_group.csv" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/visually_impaired_group.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

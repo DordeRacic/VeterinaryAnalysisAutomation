@@ -64,7 +64,9 @@ def format_email_body(payload, extra_fields):
     lines.append("\n**Patient Information**")
     lines.append(f"Pet Name: {payload['patient_name']}")
     lines.append(f"Species: {species_label}")
+    lines.append(f"Species (if not listed):{patient_species_nl}")
     lines.append(f"Breed: {breed_label}")
+    lines.append(f"Breed (if not listed):{breed_non_listed}")
     lines.append(f"Sex: {sex_label}")
     lines.append(f"Color: {extra_fields.get('color', '')}")
     lines.append(f"Birthday: {payload['birthday_month']}/{payload['birthday_day']}/{payload['birthday_year']}")
@@ -259,7 +261,9 @@ def fill_pdf_with_fitz(payload, extra_fields):
     breed_label = next(k for k, v in breed_map.items() if v == payload['patient_breed'])
     draw(85, 358, payload['patient_name'])
     draw(483, 359, species_label)  # Consider converting ID to label if needed
+    draw(483, 359, patient_species_nl)
     draw(80, 379, breed_label)    # Same here
+    draw(80, 379, breed_non_listed)    # Same here
     draw(483, 401, f"{payload['birthday_month']}/{payload['birthday_day']}/{payload['birthday_year']}")
     age = 2025 - payload['birthday_year']
     draw(400, 380, f"{age}")
@@ -374,6 +378,8 @@ if submit_button:
                     "owner_year": owner_year,
                     "prev_visit": prev_visit,
                     "color": color,
+                    "breed_not_listed": breed_non_listed,
+                    "species_not_listed":patient_species_nl,
                     "pet_prev_visit": pet_prev_visit,
                     "doctor": doctor,
                     "clinic_name": clinic_name
