@@ -191,7 +191,9 @@ with col2:
     with st.container(border=True):
         st.subheader("Pet Information")
         pet_name = st.text_input("Pet Name:")
-        breed = st.selectbox("Breed", sorted(breed_map.keys()))
+        breed_options = [""] + sorted(breed_map.keys())
+        breed = st.selectbox("Breed", breed_options, index= 0)
+        breed_non_listed = st.text_input("Breed (if not listed):")
         color = st.text_input("Color")
         dob = st.markdown("**Patient's Date of Birth**")
         dob_col1, dob_col2, dob_col3 = st.columns(3)
@@ -203,6 +205,7 @@ with col2:
             year = st.selectbox("Year", list(range(2000, 2025)), key='pet_year')
         patient_sex = st.selectbox("Sex", sorted(sex_map.keys()))
         patient_species = st.selectbox("Species", species_keys, index= canine_index)
+        patient_species_nl = st.text_input("Species (if not listed):")
         pet_prev_visit = st.selectbox("Has this pet been at our facility before?", ['Yes','No'])
 
 # === PRIMARY CARE VETERINARIAN INFO

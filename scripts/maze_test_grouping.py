@@ -1,8 +1,8 @@
 import pandas as pd
 
-file = r"C:\Users\djord\Documents\Coding\VeterinaryAnalysisAutomation\video_results\Visual maze test analysis study example July 2025 Non-Expert.csv"
+file = r"C:\Users\djord\Downloads\Visual maze test analysis study_ready.xlsx"
 scores = r"C:\Users\djord\Documents\Coding\VeterinaryAnalysisAutomation\video_results\combined_analysis.csv"
-df = pd.read_csv(file)
+df = pd.read_excel(file)
 df_scores = pd.read_csv(scores)
 
 df['Filename'] = df['Filename'].astype(str).str.strip()
@@ -44,3 +44,4 @@ def computer_label(row):
 merged_df['Expert Status'] = merged_df.apply(expert_label, axis=1)
 merged_df['Visual Status'] = merged_df.apply(computer_label, axis=1)
 merged_df.to_csv('merged_results_expert.csv')
+
