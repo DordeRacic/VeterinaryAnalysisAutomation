@@ -203,7 +203,7 @@ with col2:
         with dob_col2:
             month = st.selectbox("Month", list(range(1,13)),key='pet_month')
         with dob_col3:
-            year = st.selectbox("Year", list(range(2000, 2025)), key='pet_year')
+            year = st.selectbox("Year", list(range(2000, 2027)), key='pet_year')
         patient_sex = st.selectbox("Sex", sorted(sex_map.keys()))
         patient_species = st.selectbox("Species", species_keys, index= canine_index)
         pet_prev_visit = st.selectbox("Has this pet been at our facility before?", ['Yes','No'])
@@ -260,7 +260,7 @@ def fill_pdf_with_fitz(payload, extra_fields):
     draw(85, 358, payload['patient_name'])
     draw(483, 359, species_label)  # Consider converting ID to label if needed
     draw(80, 379, breed_label)    # Same here
-    draw(80, 379, breed_non_listed)    # Same here
+    draw(175, 379, breed_non_listed)    # Same here
     draw(483, 401, f"{payload['birthday_month']}/{payload['birthday_day']}/{payload['birthday_year']}")
     age = 2025 - payload['birthday_year']
     draw(400, 380, f"{age}")
