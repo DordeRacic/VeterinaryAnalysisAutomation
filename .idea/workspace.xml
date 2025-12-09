@@ -6,7 +6,31 @@
   <component name="ChangeListManager">
     <list default="true" id="6abb418a-f3bd-4f8f-b379-0b90da429441" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/Maze Test Analysis Merged and Grouped.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/automation.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/blind_group.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/joined_file.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/listing_videos.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/maze_merging_final_files.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/maze_test_grouping.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/merged_final.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/merged_final.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/merged_results.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/merged_results_expert.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/merged_results_non_expert.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/ordering_bot.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/pdf_structure_summary.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/python_maze_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/python_maze_test_local.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/stokes_order_bot.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/visual_group.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/visually_impaired_group.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/video_list.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/video_results/Visual maze test analysis study example July 2025 Non-Expert.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/video_results/blind_group.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/video_results/combined_analysis.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/video_results/visual_group.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/video_results/visually_impaired_group.csv" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
