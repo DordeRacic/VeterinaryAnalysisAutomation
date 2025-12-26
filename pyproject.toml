@@ -1,0 +1,46 @@
+[tool.poetry]
+name = "patient-intake-form"
+version = "0.1.0"
+description = "Veterinary patient intake form application for Animal Eye Iowa"
+authors = ["Animal Eye Iowa"]
+readme = "README.md"
+packages = [{include = "patient_intake"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+streamlit = "^1.40.0"
+requests = "^2.32.0"
+captcha = "^0.6.0"
+PyMuPDF = "^1.25.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.0.0"
+pytest-cov = "^6.0.0"
+ruff = "^0.8.0"
+mypy = "^1.13.0"
+types-requests = "^2.32.0"
+
+[tool.poetry.scripts]
+patient-intake = "patient_intake.app:main"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+ignore = ["SIM117"]  # Allow nested with statements for Streamlit UI
+
+[tool.mypy]
+python_version = "3.10"
+strict = false
+warn_return_any = true
+warn_unused_ignores = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-v --cov=patient_intake"

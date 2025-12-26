@@ -1,4 +1,43 @@
+# Poetry
+.venv/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+eggs/
+.eggs/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Environment
+.env
+*.env
+secrets.env
+
+# Streamlit
+.streamlit/secrets.toml
+
+# Data
+files/data.json
+
+# Project specific
 /videos
 videos.tar
 secret.txt
-secrets.env
+.coverage
+
+.pytest_cache
+.ruff_cache
+.idea
+.vscode
+.claude
