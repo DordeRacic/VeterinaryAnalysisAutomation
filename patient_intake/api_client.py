@@ -16,12 +16,26 @@ def fetch_reference_data() -> tuple[dict, dict, dict]:
         mapping names to IDs.
     """
     headers = {"service-token": SERVICE_TOKEN}
-    response = requests.get(CATALOGUE_URL, headers=headers, timeout=20)
-    response.raise_for_status()
-    data = response.json()
-    species_map = {item["name"]: int(item["id"]) for item in data["species"]}
-    breed_map = {item["name"]: int(item["id"]) for item in data["breed"]}
-    sex_map = {item["name"]: int(item["id"]) for item in data["sex"]}
+    try:
+        response = requests.get(CATALOGUE_URL, headers=headers, timeout=20)
+        response.raise_for_status()
+        data = response.json()
+    except requests.exceptions.RequestException as exc:
+        st.error("Unable to load reference data from the server. Please check your connection or try again later.")
+        return {}, {}, {}
+    except ValueError as exc:
+        # Covers JSON decoding errors and other value issues from response.json()
+        st.error("Received invalid reference data from the server. Please try again later.")
+        return {}, {}, {}
+
+    try:
+        species_map = {item["name"]: int(item["id"]) for item in data["species"]}
+        breed_map = {item["name"]: int(item["id"]) for item in data["breed"]}
+        sex_map = {item["name"]: int(item["id"]) for item in data["sex"]}
+    except (KeyError, TypeError, ValueError) as exc:
+        # Handles missing keys, wrong types, or non-iterable data structures
+        st.error("Reference data from the server is incomplete or malformed. Please try again later.")
+        return {}, {}, {}
     return species_map, breed_map, sex_map
 
 
