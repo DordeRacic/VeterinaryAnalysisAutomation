@@ -1,0 +1,30 @@
+# Git
+.git
+.gitignore
+
+# Python
+__pycache__
+*.py[cod]
+*.egg-info
+.venv
+.pytest_cache
+.ruff_cache
+.coverage
+.mypy_cache
+
+# IDE
+.idea
+.vscode
+.claude
+
+# Local files
+.env
+.streamlit/secrets.toml
+files/
+scripts/
+
+# Dev files
+tests/
+CONVERSION_PLAN.md
+*.md
+!README.md
