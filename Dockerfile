@@ -2,6 +2,7 @@ FROM python:3.12-slim
 
 WORKDIR /app
 
+
 # Install system dependencies for PyMuPDF
 RUN apt-get update && apt-get install -y --no-install-recommends \
     libmupdf-dev \
@@ -11,15 +12,18 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN pip install --no-cache-dir poetry
 
 # Copy dependency files
-COPY pyproject.toml poetry.lock* ./
+COPY pyproject.toml poetry.lock* README.md ./
+
+# Copy application code
+COPY patient_intake/ ./patient_intake/
+COPY templates/ ./templates/
+
 
 # Install dependencies (no dev dependencies, no virtualenv in container)
 RUN poetry config virtualenvs.create false \
     && poetry install --only main --no-interaction --no-ansi
 
-# Copy application code
-COPY patient_intake/ ./patient_intake/
-COPY templates/ ./templates/
+
 
 # Expose Streamlit port
 EXPOSE 8501
