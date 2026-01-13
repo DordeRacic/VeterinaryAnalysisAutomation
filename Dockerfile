@@ -2,7 +2,6 @@ FROM python:3.12-slim
 
 WORKDIR /app
 
-
 # Install system dependencies for PyMuPDF
 RUN apt-get update && apt-get install -y --no-install-recommends \
     libmupdf-dev \
@@ -18,12 +17,13 @@ COPY pyproject.toml poetry.lock* README.md ./
 COPY patient_intake/ ./patient_intake/
 COPY templates/ ./templates/
 
-
 # Install dependencies (no dev dependencies, no virtualenv in container)
 RUN poetry config virtualenvs.create false \
     && poetry install --only main --no-interaction --no-ansi
 
-
+# Create creds file
+RUN mkdir ./.streamlit
+COPY .streamlit/secrets.toml.example ./.streamlit/secrets.toml
 
 # Expose Streamlit port
 EXPOSE 8501
