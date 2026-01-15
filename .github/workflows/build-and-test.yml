@@ -1,0 +1,136 @@
+name: "TEST build and deploy"
+
+env:
+  GH_REGISTRY: ghcr.io
+  TESTING_HOST: test.form.pro4eyes.com
+
+on:
+  push:
+    tags:
+      - '*.*.*'
+    branches:
+      - 'release-*.*.*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Checkout"
+        uses: actions/checkout@v4
+
+      - name: "Get vars from refs"
+        id: vars
+        run: |
+          tag=${GITHUB_REF##*/}
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+
+      - name: "Login to GitHub Container Registry"
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.GH_REGISTRY }}
+          username: ${{ secrets.GHCR_USERNAME }}
+          password: ${{ secrets.GH_TOKEN }}
+
+      - name: TG notify 1
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          format: markdown
+          message: |
+            ▶︎ TEST Build **${{ github.repository }}** STARTED
+            Version **${{ steps.vars.outputs.tag }}**
+
+      - name: 'Build and push dockerimage'
+        id: buildImage
+        uses: docker/build-push-action@v5
+        with:
+          github-token: ${{ secrets.GH_TOKEN }}
+          file: ./Dockerfile
+          tags: |
+            ${{ env.GH_REGISTRY }}/${{ github.repository }}:${{ steps.vars.outputs.tag }},
+            ${{ env.GH_REGISTRY }}/${{ github.repository }}:latest
+          push: true
+
+      - name: TG notify 1 failure
+        uses: appleboy/telegram-action@master
+        if: failure() && steps.buildImage.outcome == 'failure'
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          format: markdown
+          message: |
+            ❌ TEST Build **${{ github.repository }}** FAILED
+            Version **${{ steps.vars.outputs.tag }}**
+
+      - name: TG notify 2
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          format: markdown
+          message: |
+            ✅ TEST Build **${{ github.repository }}** COMPLETED
+            Version **${{ steps.vars.outputs.tag }}**
+
+  deploy-test:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Get vars from refs"
+        id: vars
+        run: |
+          tag=${GITHUB_REF##*/}
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+
+      - name: TG notify 1
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          format: markdown
+          message: |
+            ▶︎ TEST Deploy **${{ github.repository }}** STARTED
+            Version **${{ steps.vars.outputs.tag }}**
+            HOST: **${{ env.TESTING_HOST }}**
+
+      - name: "Deploying an instance of app in a EC2 VM"
+        id: deployImage
+        uses: appleboy/ssh-action@master
+        env:
+          VERSION: ${{ steps.vars.outputs.tag }}
+        with:
+          host: ${{ env.TESTING_HOST }}
+          username: ${{ secrets.TESTING_HOST_USERNAME }}
+          key: ${{ secrets.TESTING_HOST_KEY }}
+          envs: VERSION
+          script_stop: true
+          script: |
+            echo "Version $VERSION"
+            docker pull ${{ env.GH_REGISTRY }}/${{ github.repository }}:$VERSION
+            cd /opt/${{ env.TESTING_HOST }}/
+            pwd
+            VERSION=$VERSION docker-compose up -d
+
+      - name: TG notify 1 failure
+        uses: appleboy/telegram-action@master
+        if: failure() && steps.deployImage.outcome == 'failure'
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          format: markdown
+          message: |
+            ❌ TEST Deploy **${{ github.repository }}** FAILED
+            Version **${{ steps.vars.outputs.tag }}**
+            HOST: **${{ env.TESTING_HOST }}**
+
+      - name: TG notify 2
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          format: markdown
+          message: |
+            ✅ TEST Deploy **${{ github.repository }}** COMPLETED
+            Version **${{ steps.vars.outputs.tag }}**
+            HOST: **${{ env.TESTING_HOST }}**
